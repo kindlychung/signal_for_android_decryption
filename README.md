@@ -4,6 +4,7 @@ Signal for Android backup decryption tool
 This repository contains an (unofficial) tool which decrypts backup files
 produced by the [Signal](https://signal.org/) Android app.
 
+
 What this tool is **not**:
 
 * This tool does not export the backup data into a ready-to-use format, it
@@ -27,12 +28,14 @@ This tool is designed to run under Python 3.7+.
 
 You can install the required Python dependencies as follows:
 
-    $ pip install -r requirements.txt
+    python3 -m venv ~/venv/signal-decrypt
+    source ~/venv/signal-decrypt/bin/activate
+    pip install -r requirements.txt
 
 Optionally, you may rebuild the [Protocol
 Buffer](https://developers.google.com/protocol-buffers) Python module:
 
-    $ protoc -I=. --python_out=. Backups.proto
+    protoc -I=. --python_out=. Backups.proto
 
 
 Usage
@@ -46,9 +49,9 @@ your groups the backup process can take several hours.
 
 You can then decrypt the backup file as follows:
 
-    $ python decrypt_backup.py path/to/signal.backup path/to/output/dir
+    python decrypt_backup.py ~/Downloads/signal_backup/signal-2024-06-20-11-56-50.backup  ~/Downloads/signal_backup/decrypted/
 
-The tool will prompt you for your backup passphrase (spaces are optional) and
+The tool will prompt you for your **backup passphrase of 30 digits** (spaces are optional) and
 then extract the backup file into the specified output directory.
 
 The backup will be decrypted into the directory you specified. The extracted
